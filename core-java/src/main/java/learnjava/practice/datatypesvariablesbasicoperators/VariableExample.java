@@ -19,7 +19,7 @@ public class VariableExample {
 	private static String bar;
 	private static int j;
 	
-	public static void dosomething1() {
+	public static void dosomethingstaticmethod() {
 		//Local Variables
 		//The are created inside method/constructor or block and will be destroyed once it exits
 		// They don't have default values 

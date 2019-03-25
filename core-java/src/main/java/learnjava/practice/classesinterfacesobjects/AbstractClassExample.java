@@ -13,5 +13,5 @@ public abstract class AbstractClassExample {
 		System.out.println("implemented method");
 	}
 	abstract void dosomething() ;
-	//http://tutorials.jenkov.com/java/core-concepts.html
+	
 }

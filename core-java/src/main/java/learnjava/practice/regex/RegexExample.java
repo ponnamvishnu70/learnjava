@@ -1,8 +1,4 @@
 package learnjava.practice.regex;
-//(470)-767-3679
-//4707673689
-//470.767.3689
-//470-767-3689
 /*
 . - Any Character Except New Line
 \d - Digit (0-9)
@@ -56,12 +52,14 @@ public class RegexExample {
 		String email ="vishnu+ponnam@gm1.ydu";
 		System.out.println(email.matches("[a-zA-Z0-9+.]+@[a-zA-Z0-9]+\\.[a-zA-Z]+"));
 		
-		String line = "This order was placed for QT3000!  123 OK?";
+		String line = "Hey is your token number 70";
 		System.out.println(line.matches("(.*)(\\d+)(.*)"));
 		String randomStr ="Yabxabs 123423";
 		System.out.println("randomStr"+randomStr.matches("(abx|abs|abxabs)\\s[\\d]+"));
 		String randomStr1 ="Yabxabs      123423";
 		System.out.println("randomStr"+randomStr1.matches("[^\\d]+\\s[\\d]+"));
+		String test="vishnuuuuuuunuuunuuuuuununu";
+		System.out.println("test value is "+test.matches("vish(nu*)*"));
 		
 		return false;
 	}
