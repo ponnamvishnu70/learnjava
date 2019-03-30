@@ -31,16 +31,17 @@ public class FileIOStream {
 	public static void main(String[] args) throws IOException {
 		FileInputStream fin = null;
 		try {
-			fin = new FileInputStream("C:\\Users\\AA0534\\Desktop\\input.txt");
+			/*fin = new FileInputStream("C:\\Users\\AA0534\\Desktop\\input.txt");
 			System.out.println(fin.available());
 			System.out.println(Character.BYTES);
 			System.out.println(Charset.defaultCharset());
 			System.out.println(fin.read());
 			System.out.println(fin.read());
-			System.out.println(fin.getChannel().position());
+			System.out.println(fin.getChannel().position());*/
+			System.out.println(Long.parseLong(""));
 		} catch (Exception e) {
-		} finally {
-			fin.close();
+		} finally { 
+			//fin.close();
 		}
 
 	}
