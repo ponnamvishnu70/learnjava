@@ -1,7 +1,7 @@
 package learnjava.practice.model;
 
 //We have to implement Cloneable interface in order to copy an object
-public class Person implements Cloneable {
+public class Person implements Cloneable, Comparable<Person> {
 
 	private String fname;
 	private String lname;
@@ -13,6 +13,10 @@ public class Person implements Cloneable {
 	public Person(String fname, String lname) {
 		this.fname=fname;
 		this.lname=lname;
+	}
+	public Person(String fname, String lname, int age) {
+		this(fname,lname);
+		this.age= age;
 	}
 
 	public String getFname() {
@@ -87,6 +91,11 @@ public class Person implements Cloneable {
 		} else if (!lname.equals(other.lname))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Person person) {
+		return this.age-person.age ;
 	}
 	
 }
