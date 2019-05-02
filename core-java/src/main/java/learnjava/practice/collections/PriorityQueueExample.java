@@ -1,5 +1,6 @@
 package learnjava.practice.collections;
 
+import java.util.Collection;
 import java.util.PriorityQueue;
 
 import learnjava.practice.model.Person;

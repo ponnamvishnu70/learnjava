@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import learnjava.practice.model.Person;
 //Hash map allows one null key and any null values
 //Hashtable doesn't allow null key or values
 //HashMap is  preferred over HashTable if no synchronization  needed
@@ -30,7 +32,16 @@ public class HashMapExample {
 		while (i.hasNext()) {
 			System.out.println(i.next().getKey());
 }
-		System.out.println(numbers.get(null));
+		//System.out.println(numbers.get(null));
+		
+		Map<Person,String> persons = new HashMap<Person,String>();
+		Person p = new Person("vishnu","ponnam",28);
+		Person p1 = new Person("vishnu1","ponnam1",29);
+		persons.put(p, "vishnu");
+		persons.put(p1, "vishnu1");
+		p.setAge(30);
+		System.out.println(persons.get(p));
+		
 		
 	}
 
