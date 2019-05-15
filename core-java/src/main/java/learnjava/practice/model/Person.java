@@ -6,6 +6,7 @@ public class Person implements Cloneable, Comparable<Person> {
 	private String fname;
 	private String lname;
 	private int age;
+	private int salary;
 
 	public Person() {
 	}
@@ -41,6 +42,14 @@ public class Person implements Cloneable, Comparable<Person> {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
 	}
 
 	// when you try to print this object you will see classname@HashCode

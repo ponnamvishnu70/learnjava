@@ -26,9 +26,13 @@ public class PriorityQueueExample {
 	 priorityperson.add(new Person("virat", "kohli",29));	
 	 //priorityperson.forEach(s->System.out.println(s));
 	 for(int i=0; i <priorityperson.size();i++) {
-        // System.out.println(priorityperson.peek());
+        System.out.println(priorityperson.peek());
+		 if(i==0) {
+			 priorityperson.add(new Person("prithvi", "shaw",26));
+		 }
      }
-	 priorityperson.add(new Person("prithvi", "shaw",19));
+	 
+	
 	 int size=priorityperson.size();
 	 for(int i=0; i <size;i++) {
          System.out.println(priorityperson.poll());
