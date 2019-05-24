@@ -8,6 +8,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+//Callable vs runnable : run(Runnable) method doesn't return anything. 
+//But with call(Callable) we can return a value
 public class CallableExecutorExample{
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		AddJob[] job = {
