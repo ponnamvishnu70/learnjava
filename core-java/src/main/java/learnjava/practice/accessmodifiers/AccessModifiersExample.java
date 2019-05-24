@@ -29,8 +29,8 @@ public class AccessModifiersExample {
 	/*******AccessModifiers Method - START*******/
 	//we can apply all access modifiers on methods
 	public void doSomething() {
-	//	only final is permitted on method varibles 
-		//method level variable will be created and destroyed outside this method so no access specifiers
+	//	only final is permitted on method  
+		//method level variable will be created and destroyed in this method so no access specifiers
 		//public int i=1; --> Compilation error 
 		int i=0;
 	}
