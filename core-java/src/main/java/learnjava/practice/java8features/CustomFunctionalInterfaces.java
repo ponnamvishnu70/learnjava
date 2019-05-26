@@ -5,5 +5,8 @@ package learnjava.practice.java8features;
 @FunctionalInterface
 public interface CustomFunctionalInterfaces {
 	void print();
+	default  void printSomething() {
+		System.out.println("in default method");
+	}
 
 }

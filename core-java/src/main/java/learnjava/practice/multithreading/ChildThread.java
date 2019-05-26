@@ -13,3 +13,4 @@ public class ChildThread extends Thread {
 		System.out.println("from child thread"+ParentThread.it.get());
 	}
 }
+
