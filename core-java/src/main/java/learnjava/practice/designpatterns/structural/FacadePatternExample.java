@@ -1,4 +1,5 @@
-package learnjava.practice.designpatterns.creational;
+package learnjava.practice.designpatterns.structural;
+
 //Facade Design pattern - Interface that can act as entry to many services
 public class FacadePatternExample {
 	Pizza basicPizza;

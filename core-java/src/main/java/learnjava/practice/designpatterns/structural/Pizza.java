@@ -1,4 +1,4 @@
-package learnjava.practice.designpatterns.creational;
+package learnjava.practice.designpatterns.structural;
 //Decorator Pattern
 public interface Pizza {
 

@@ -1,4 +1,4 @@
-package learnjava.practice.designpatterns.creational;
+package learnjava.practice.designpatterns.structural;
 
 public class Vehicle {
 	public void move() {
