@@ -61,8 +61,8 @@ public class Person implements Cloneable, Comparable<Person> {
 	}
 
 	// for copying object
-	// Look for shallow copy vs deep copy --this is how do you want copy content
-	// inside object
+	// Look for shallow copy vs deep copy (this is how do you want copy content
+	// inside object)
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();

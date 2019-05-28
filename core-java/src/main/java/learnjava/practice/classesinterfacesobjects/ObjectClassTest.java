@@ -10,8 +10,14 @@ public class ObjectClassTest implements Cloneable{
 		Person p = new Person("vishnu", "ponnam");
 		Person person = new Person("vishnu", "ponnam");
 		Person person1= (Person)p.clone();
+		p.setLname("ponnam-original copy");
+		person1.setFname("vishnu-shallow copy");
+		System.out.println(p.toString());
+		System.out.println(person1.toString());
+		
 		System.out.println(p.toString());//this method is Object class and we have overridden it
 		System.out.println(p.hashCode());//Returns a hash code value for the object
+		System.out.println("shallow copy"+person1.hashCode());
 		//Results false because we comparing address not the content in it
 		//we need to override equals in person class 
 		//how the person class should be compared
