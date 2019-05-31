@@ -60,6 +60,11 @@ public class RegexExample {
 		System.out.println("randomStr"+randomStr1.matches("[^\\d]+\\s[\\d]+"));
 		String test="vishnuuuuuuunuuunuuuuuununu";
 		System.out.println("test value is "+test.matches("vish(nu*)*"));
+		//check only date format
+		String ref1 = "rateexchg_02_20181231_99.txt";
+		String refRegex ="(?i)(rateexchg|taxwageqtr)_\\d{1,4}_20\\d{2}(0?[0-9]|1[0-2])(0?[0-9]|[1-2][0-9]|3[0-1])_(0?[0-9]|[1-9][0-9]).txt";
+						 //^^ --> ignore case()//case-insensitive mode ON  
+		System.out.println(ref1.matches(refRegex));
 		
 		return false;
 	}
