@@ -1,7 +1,88 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+	<display-name>Archetype Created Web Application</display-name>
+	<listener>
+	<listener-class>
+            learnjava.practice.servlets.listeners.MyContextListener
+    </listener-class>
+   </listener>
+   <listener>
+	<listener-class>            
+            learnjava.practice.servlets.listeners.MySessionListener
+    </listener-class>
+   </listener>
+   <listener>
+	<listener-class>            
+            learnjava.practice.servlets.listeners.MySessionBindingListener
+    </listener-class>
+   </listener>
+   <listener>
+	<listener-class>            
+            learnjava.practice.servlets.listeners.MyHttpSessionAttributeListener
+    </listener-class>
+   </listener>
+   <listener>
+	<listener-class>            
+            learnjava.practice.servlets.listeners.MyRequestListener
+    </listener-class>
+   </listener>
+   <filter>  
+	<filter-name>myFilter</filter-name>  
+	<filter-class>learnjava.practice.servlets.filter.MyFilter</filter-class>  
+   </filter>  
+   
+   <filter-mapping>  
+	<filter-name>myFilter</filter-name>  
+	<url-pattern>/adduser</url-pattern>  
+   </filter-mapping>  
+   
+   <context-param>
+		<param-name>TV</param-name>
+		<param-value>VIZIO</param-value>
+	</context-param>
+	<context-param>
+		<param-name>CAR</param-name>
+		<param-value>ACURA</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>userServlet</servlet-name>
+		<servlet-class>learnjava.practice.servlets.UserServlet</servlet-class>
+		<init-param>
+			<param-name>TV</param-name>
+			<param-value>TCL</param-value>
+		</init-param>
+		<init-param>
+			<param-name>Car</param-name>
+			<param-value>FORD</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userServlet</servlet-name>
+		<url-pattern>/adduser</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>modifyUser</servlet-name>
+		<servlet-class>learnjava.practice.servlets.ModifyUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>modifyUser</servlet-name>
+		<url-pattern>/modify</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>userServlet2</servlet-name>
+		<servlet-class>learnjava.practice.servlets.UserServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userServlet2</servlet-name>
+		<url-pattern>/adduserform2</url-pattern>
+	</servlet-mapping>
+
+
 </web-app>
