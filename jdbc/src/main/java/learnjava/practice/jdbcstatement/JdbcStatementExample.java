@@ -78,7 +78,7 @@ public class JdbcStatementExample {
 		//if you don't commit the transaction the record will not committed 
 		//because we have set autocommit to false
 		HistEodData heod = new HistEodData();
-		heod.setTicker("MDTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+		heod.setTicker("MDT");
 		heod.setAdjClosePrice(90);
 		heod.setClosePrice(90);
 		heod.setDate(LocalDate.parse("2018-09-06"));
