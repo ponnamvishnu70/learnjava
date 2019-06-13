@@ -49,7 +49,7 @@ public class StatementExample {
 					historicEodData.setAdjClosePrice(Double.parseDouble(data[5]));
 				}
 				case 6: {
-					historicEodData.setAdjClosePrice(Long.parseLong(data[6]));
+					historicEodData.setVolume(Long.parseLong(data[6]));
 					;
 				}
 				}
@@ -71,7 +71,7 @@ public class StatementExample {
 		});
 		String fileLocation = "C:\\Workspace\\MDT.csv";
 		 List<HistEodData> histEodData = readHistEodDataCsv(fileLocation);
-		 js.insertEodData(histEodData);
+		js.insertEodData(histEodData);
 		HistEodData heod = new HistEodData();
 		heod.setTicker("MDT");
 		heod.setAdjClosePrice(90);
@@ -81,7 +81,7 @@ public class StatementExample {
 		heod.setLowPrice(90);
 		heod.setOpenPrice(90);
 		heod.setVolume(66666);
-		//js.insertEodData(heod);
+		js.insertEodData(heod);
 
 	}
 }

@@ -1,4 +1,8 @@
 package learnjava.practice.regex;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 . - Any Character Except New Line
 \d - Digit (0-9)
@@ -65,7 +69,6 @@ public class RegexExample {
 		String refRegex ="(?i)(rateexchg|taxwageqtr)_\\d{1,4}_20\\d{2}(0?[0-9]|1[0-2])(0?[0-9]|[1-2][0-9]|3[0-1])_(0?[0-9]|[1-9][0-9]).txt";
 						 //^^ --> ignore case()//case-insensitive mode ON  
 		System.out.println(ref1.matches(refRegex));
-		
 		return false;
 	}
 	public static void main(String[] args) {

@@ -29,6 +29,15 @@ public class SingletonExample {
 		return singleton;
 	}
 	
+	//This static inner class is loaded only after getInstance() is called for the first time. */
+    private static class SingletonHelper {
+        private static final SingletonExample SINGLE_INSTANCE = new SingletonExample();
+    }
+    
+    public static SingletonExample getInstance() {
+        return SingletonHelper.SINGLE_INSTANCE;
+    }
+	
 	/* Using Reflections we can still get a new object. just block it in the constructor
 	 try {
             Constructor[] constructors = MySingleton.class.getDeclaredConstructors();
