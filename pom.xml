@@ -11,6 +11,7 @@
 		<module>core-java</module>
 		<module>jdbc</module>
 		<module>JdbcAndServlets</module>
+		<module>spring-core</module>
 	</modules>
 	<properties>
 		<jdbc_version>12.1.0</jdbc_version>
@@ -34,6 +35,7 @@
 				<artifactId>commons-lang3</artifactId>
 				<version>3.9</version>
 			</dependency>
+			
 
 		</dependencies>
 	</dependencyManagement>
