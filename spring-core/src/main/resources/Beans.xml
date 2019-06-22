@@ -1,19 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+  						http://www.springframework.org/schema/beans/spring-beans.xsd
+ 						http://www.springframework.org/schema/context
+ 						http://www.springframework.org/schema/context/spring-context.xsd">
+ 		<!-- The below tag is neccessary to enable annotation -->
+ 		<context:annotation-config/>
 	<beans>
+		<!-- setter based DI -->
+		<!-- object is created and property are set using set methods..we wont 
+			circular dependency issue -->
+		<!-- init-method="init" destroy-method="destroy" or use postconstructand predestroy can be used -->
 		<bean id="studentObjByProperties"
-			class="leaarnjava.practice.springcore.model.Student">
+			class="learnjava.practice.springcore.model.Student">
 			<property name="name" value="vishnu" />
 			<property name="age" value="28" />
 		</bean>
+		<!-- contructot based DI -->
+		<!-- Object can be complete because we are making sure all the value are 
+			set during object creation. FInal values can be set thru constructor injection. -->
 		<bean id="studentObjByConstructor"
-			class="leaarnjava.practice.springcore.model.Student">
+			class="learnjava.practice.springcore.model.Student">
 			<constructor-arg name="name" value="ponnam" />
 			<constructor-arg name="age" value="29" />
 		</bean>
+
+		<bean id="enrolledStudent"
+			class="learnjava.practice.springcore.model.Student">
+			<constructor-arg name="name" value="ponnam" />
+			<constructor-arg name="age" value="29" />
+			<property name="subjects">
+				<list>
+					<value>JAVA</value>
+					<value>ORACLE DB</value>
+					<value>SPRING</value>
+				</list>
+			</property>
+		</bean>
+
+		<bean id="person"
+			class="learnjava.practice.springcore.model.Person">
+			<!-- <property name="student" ref="studentObjByConstructor"></property> -->
+			<property name="student">
+				<bean id="studentObj"
+					class="learnjava.practice.springcore.model.Student">
+					<constructor-arg name="name" value="vishnu ponnam" />
+					<constructor-arg name="age" value="30" />
+				</bean>
+			</property>
+		</bean>
+		<bean id="student"
+			class="learnjava.practice.springcore.model.Student">
+			<constructor-arg name="name" value="pv" />
+			<constructor-arg name="age" value="40" />
+		</bean>
+		<!-- autowire byName will look into person class and look for student reference 
+			and then check in beans.xml for same name id if it find the object it will 
+			be injected if not null is injected. and A setter method for student reference 
+			must be present -->
+		<bean id="personAutoWireByName"
+			class="learnjava.practice.springcore.model.Person" autowire="byName">
+		</bean>
+		<!-- autowire byType is Person object will try to for obj of student. If 
+			more than one such beans exists it we throw an exception like below Exception 
+			thrown :::: No qualifying bean of type 'learnjava.practice.springcore.model.Student' 
+			available: expected single matching bean but found 4: studentObjByProperties,studentObjByConstructor,enrolledStudent,student 
+			<bean id="personAutoWireByType" class="learnjava.practice.springcore.model.Person" 
+			autowire="byType" > </bean> -->
+			
+		<bean id="car" class="learnjava.practice.springcore.model.Car">
+			<property name="mileage" value="50000"/>
+			<!-- uncomment below line of code to see if required annotation is working .when @required is used only setter DI must be used -->
+			<property name="make" value="toyota"/>
+			<property name="model" value="tundra"/>
+		</bean>
+		<bean id="BeanPostProcessorExample"
+			class="learnjava.practice.springcore.BeanPostProcessorExample" />
+		<bean id="serviceExample"
+			class="learnjava.practice.springcore.ServiceExample" />
+			
+		<bean id="serviceDao"
+			class="learnjava.practice.springcore.ServiceDao" />
+			<bean id="serviceDao2"
+			class="learnjava.practice.springcore.ServiceDao" />
 	</beans>
 
 </beans>

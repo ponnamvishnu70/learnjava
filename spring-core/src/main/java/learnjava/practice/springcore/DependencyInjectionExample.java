@@ -1,14 +1,11 @@
 package learnjava.practice.springcore;
 
-import java.applet.AppletContext;
-
-import org.omg.CORBA.portable.ApplicationException;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.Resource;
 
-import leaarnjava.practice.springcore.model.Student;
+import learnjava.practice.springcore.model.Car;
+import learnjava.practice.springcore.model.Person;
+import learnjava.practice.springcore.model.Student;
 
 //ApplicationContext is a child-interface of BeanFactory
 //ApplicationContext is superset of BeanFactory
@@ -31,7 +28,22 @@ public class DependencyInjectionExample {
 		System.out.println(stu.getName());
 		Student stuByConstructor = (Student) appcontext.getBean("studentObjByConstructor");
 		System.out.println(stuByConstructor.getName());
+		Person person = (Person) appcontext.getBean("person");
+		System.out.println(person.getStudent().getName());
+		Student stuen = (Student) appcontext.getBean("enrolledStudent");
+		stuen.getSubjects().forEach(s->{System.out.println(s);});
+		//autowire By Name
+		Person personbyName = (Person) appcontext.getBean("personAutoWireByName");
+		System.out.println(personbyName.getStudent().getName());
+		
+		Car c = appcontext.getBean("car",Car.class);
+		//we will get an exception if we don't have make property value assigned during bean creation
+		System.out.println(c.getMake());
 		//need to close as this using resource to read Beans.xml file
+		ServiceExample serviceExample = appcontext.getBean("serviceExample",ServiceExample.class);
+		serviceExample.Process();
+	
+		
 		((ClassPathXmlApplicationContext)appcontext).close();
 		
 		
