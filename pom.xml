@@ -12,6 +12,7 @@
 		<module>jdbc</module>
 		<module>JdbcAndServlets</module>
 		<module>spring-core</module>
+		<module>spring-batch</module>
 	</modules>
 	<properties>
 		<jdbc_version>12.1.0</jdbc_version>

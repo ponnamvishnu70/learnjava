@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch
+		http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="../config/context.xml" />
+
+	<batch:job id="loadData" restartable="true">
+		<batch:step id="print">
+			<tasklet ref="printTasklet" />
+			<batch:next on="COMPLETED" to="print1"></batch:next>
+		</batch:step>
+		<batch:step id="print1">
+			<tasklet ref="printTasklet" />
+		</batch:step>
+	</batch:job>
+	
+	
+
+
+
+
+</beans>
