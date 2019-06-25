@@ -42,10 +42,47 @@
 	<bean id="printTasklet"
 		class="learnjava.practice.springbatch.tasklet.PrintTasklet" />
 	<bean id="cvsFileItemReader"
-		class="org.springframework.batch.item.file.FlatFileItemReader" >
+		class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="resource">
+		<bean class="org.springframework.core.io.FileSystemResource">
+		<constructor-arg name="path" value="T:\\data\\eoddata\\eight\\Output.csv"></constructor-arg>
 		</bean>
+			</property>
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names"
+							value="timeStamp,openPrice,highPrice,lowPrice,closePrice,adjClosePrice,volume,ticker"></property>
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+						<property name="TargetType" value="learnjava.practice.springbatch.model.EodData">
+						</property>
+					</bean>
+				</property>
+			</bean>
+
+		</property>
+	</bean>
 	<bean id="mysqlItemWriter"
-	class="org.springframework.batch.item.database.JdbcBatchItemWriter">
+		class="org.springframework.batch.item.database.JdbcBatchItemWriter">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sql">
+			<value>
+            <![CDATA[        
+            	insert into HIST_EOD_DATA(TICKER,VOLUME,CLOSE_PRICE,OPEN_PRICE,HIGH_PRICE,LOW_PRICE,ADJ_CLOSE_PRICE,TIME_STAMP) 
+			values (:ticker, :volume, :closePrice, :openPrice,:highPrice,:lowPrice,:adjClosePrice,:timeStamp)
+            ]]>
+			</value>
+		</property>
+		<!-- It will take care matching between object property and sql name parameter -->
+		<property name="itemSqlParameterSourceProvider">
+			<bean
+				class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
+		</property>
+
 	</bean>
 
 
