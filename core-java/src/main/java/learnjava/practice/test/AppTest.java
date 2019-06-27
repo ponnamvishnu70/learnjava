@@ -8,6 +8,8 @@ public class AppTest {
 		long time = endTime-starTime;
 		double f = (double)time /(double)1000;
 		System.out.println(f+"secs");
+		String[] s ="APPL.CSV".split("\\.");
+	System.out.println(	s[0]);
 	}
 
 }

@@ -16,7 +16,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
 	public static void main(String[] args) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-		ApplicationContext app = new ClassPathXmlApplicationContext("springbatch/job/springbatch-job.xml");
+	    ApplicationContext app = new ClassPathXmlApplicationContext("springbatch/job/springbatch-job.xml");
 		Job job = (Job) app.getBean("loadData");
 		JobLauncher jl =  (JobLauncher) app.getBean("jobLauncher");
 		JobParametersBuilder builder = new JobParametersBuilder();		
@@ -25,5 +25,6 @@ public class Main {
 		JobExecution je = jl.run(job,builder.toJobParameters());
 		
 		System.out.println(je.getExitStatus());
+		((ClassPathXmlApplicationContext)app).close();
 	}
 }

@@ -1,10 +1,13 @@
 package learnjava.practice.springbatch.model;
 
+
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
-public class EodData {
+import learnjava.practice.springbatch.BaseResourceAware;
+
+
+public class EodData extends BaseResourceAware {
 
 	private long volume;
 	private double openPrice;
@@ -72,11 +75,11 @@ public class EodData {
 	}
 
 	public Date getTimeStamp() {
-		return Date.valueOf(timeStamp);
+		return  Date.valueOf(timeStamp);
 	}
 
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = LocalDate.parse(timeStamp);
+	public void setTimeStamp(LocalDate timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 
 }
