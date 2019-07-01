@@ -44,8 +44,6 @@
 		<jdbc:script
 			location="org/springframework/batch/core/schema-oracle10g.sql" />
 	</jdbc:initialize-database>
-	<bean id="printTasklet"
-		class="learnjava.practice.springbatch.tasklet.PrintTasklet" />
 	
 
 

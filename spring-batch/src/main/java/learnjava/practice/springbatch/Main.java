@@ -20,10 +20,8 @@ public class Main {
 		Job job = (Job) app.getBean("loadData");
 		JobLauncher jl =  (JobLauncher) app.getBean("jobLauncher");
 		JobParametersBuilder builder = new JobParametersBuilder();		
-		builder.addDate("date", new Date());	
-		
-		JobExecution je = jl.run(job,builder.toJobParameters());
-		
+		builder.addDate("date", new Date());			
+		JobExecution je = jl.run(job,builder.toJobParameters());		
 		System.out.println(je.getExitStatus());
 		((ClassPathXmlApplicationContext)app).close();
 	}

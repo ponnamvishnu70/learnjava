@@ -74,8 +74,8 @@ public class EodData extends BaseResourceAware {
 		this.ticker = ticker;
 	}
 
-	public Date getTimeStamp() {
-		return  Date.valueOf(timeStamp);
+	public LocalDate getTimeStamp() {
+		return timeStamp;
 	}
 
 	public void setTimeStamp(LocalDate timeStamp) {
