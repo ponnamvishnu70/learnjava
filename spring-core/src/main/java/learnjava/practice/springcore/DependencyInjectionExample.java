@@ -34,11 +34,12 @@ public class DependencyInjectionExample {
 		stuen.getSubjects().forEach(s->{System.out.println(s);});
 		//autowire By Name
 		Person personbyName = (Person) appcontext.getBean("personAutoWireByName");
-		System.out.println(personbyName.getStudent().getName());
+		System.out.println("by name autowiring "+personbyName.getStudent().getName());
 		
 		Car c = appcontext.getBean("car",Car.class);
 		//we will get an exception if we don't have make property value assigned during bean creation
 		System.out.println(c.getMake());
+		c.drive();
 		//need to close as this using resource to read Beans.xml file
 		ServiceExample serviceExample = appcontext.getBean("serviceExample",ServiceExample.class);
 		serviceExample.Process();

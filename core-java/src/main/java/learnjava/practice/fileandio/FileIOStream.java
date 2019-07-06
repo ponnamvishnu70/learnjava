@@ -23,7 +23,9 @@ import java.nio.charset.Charset;
  * ****
  * First, InputStreamReader can handle all input streams, not just files. 
  * Other examples are network connections, classpath resources and ZIP files.
- * Second, FileReader does not allow you to specify an encoding and instead uses the plaform default encoding, which makes it pretty much useless as using it will result in corrupted data when the code is run on systems with different platform default encodings.
+ * Second, FileReader does not allow you to specify an encoding and instead uses the plaform default encoding,
+ * which makes it pretty much useless as using it will result in corrupted data when the
+ * code is run on systems with different platform default encodings.
  * In short, forget that FileReader exists.
  * */
 

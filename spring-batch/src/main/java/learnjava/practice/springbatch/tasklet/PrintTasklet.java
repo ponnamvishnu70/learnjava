@@ -14,7 +14,7 @@ public class PrintTasklet implements Tasklet {
 			
 			if(ai.intValue()<10) {
 				ai.set(ai.incrementAndGet());
-				System.out.print(Thread.currentThread().getName() + " ai vlaue is "+ ai.intValue()+" *********");				
+				System.out.println(Thread.currentThread().getName() + " ai vlaue is "+ ai.intValue()+" *********");				
 				return RepeatStatus.CONTINUABLE;
 			}
 		return RepeatStatus.FINISHED;
