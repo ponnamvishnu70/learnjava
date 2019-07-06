@@ -26,4 +26,9 @@ public class JavaBasedConfigExample {
 		return new Person("ponnammmmm",30);
 	}
 	
+	//the bean id is name of the method
+	@Scope("prototype")//default is singleton
+	public Person person3() {
+		return new Person("ponnammmmm",30);
+	}
 }
