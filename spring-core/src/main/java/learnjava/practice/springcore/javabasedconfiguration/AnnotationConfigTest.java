@@ -7,6 +7,7 @@ public class AnnotationConfigTest {
 	
 	
 	public static void main(String[] args) {
+		//AnnotationConfigApplicationContext is for checking annotation based configuration
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(JavaBasedConfigExample.class);
 		Person p = ctx.getBean("person2",Person.class);
 		System.out.println(p.getName());
