@@ -11,7 +11,7 @@ public class MainApp {
 	
 	public static void main(String[] args) {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(Configurations.class);
-		ctx.getBean(HistEodDataDao.class).getHistEodData();
+		ctx.getBean(HistEodDataDao.class).insertHistEodData();
 		
 	}
 }
