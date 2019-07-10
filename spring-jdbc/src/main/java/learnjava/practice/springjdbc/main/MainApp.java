@@ -17,7 +17,7 @@ public class MainApp {
 		List eoddata = heoddao.getHistEodData("MDT");
 		//heoddao.insertHistEodData(eoddata);
 		//heoddao.insertHistEodData2(eoddata);
-		heoddao.getHistEodData2("MU");
-		
+		//heoddao.getHistEodData2("MU");
+		heoddao.callCompanyheod();
 	}
 }

@@ -1,5 +1,7 @@
 package learnjava.practice.springjdbc.dao;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,22 +10,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.jar.Attributes.Name;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
+import org.springframework.jdbc.core.CallableStatementCreator;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Repository;
 
 import learnjava.practice.springjdbc.mapper.HistEodDataMapper;
 import learnjava.practice.springjdbc.model.EodData;
+import oracle.jdbc.internal.OracleTypes;
 
 @Repository
 public class HistEodDataDao {
@@ -139,6 +142,7 @@ public class HistEodDataDao {
 		Map<String, ?>[] params = new HashMap[eodData.size()];
 		for(int i=0 ;i<eodData.size();i++) {
 			System.out.println(eodData.get(i).getTicker());
+			@SuppressWarnings("rawtypes")
 			Map m =new HashMap();
 			m.put("ticker", eodData.get(i).getTicker());
 			m.put("volume",  eodData.get(i).getVolume());
@@ -166,6 +170,31 @@ public class HistEodDataDao {
 		return eoddatalsit;
 	}
 
-
+	public void callCompanyheod() {
+		List<SqlParameter> sqlParameters = new ArrayList<>();
+		sqlParameters.add(new SqlOutParameter("cursor", OracleTypes.CURSOR,new HistEodDataMapper()));
+		sqlParameters.add(new SqlParameter(OracleTypes.VARCHAR));
+		sqlParameters.add(new SqlOutParameter("count", OracleTypes.INTEGER));
+				Map<String, Object> result = jdbcTemplate.call(new CallableStatementCreator() {
+			
+			@Override
+			public CallableStatement createCallableStatement(Connection con) throws SQLException {
+				CallableStatement cst = con.prepareCall("{? = call companyheod(?,?)}");
+				cst.registerOutParameter(1, OracleTypes.CURSOR);
+				cst.setString(2, "MDT");
+				cst.registerOutParameter(3, OracleTypes.INTEGER);
+				
+				return cst;
+			}
+		}, sqlParameters);
+		
+		@SuppressWarnings("unchecked")
+		List<EodData> list =  (List<EodData>) result.get("cursor");
+		list.forEach(s->{
+			System.out.println(s.getTicker());
+		});
+		
+		
+	}
 
 }
