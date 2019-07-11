@@ -6,5 +6,12 @@
 </head>
 <body>
 ${msg}
+
+	<form action="/spring-web/hello1">
+		Enter First Name: <input type="text" name="fname"><br>
+		Enter Last Name: <input type="text" name="lname"><br> 
+		Enter Last Name: <input type="text" name="name"><br> 
+		<button type="submit">submit</button>
+
 </body>
 </html>
