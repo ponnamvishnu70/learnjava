@@ -15,6 +15,7 @@
 		<module>spring-batch</module>
 		<module>spring-aop</module>
 		<module>spring-jdbc</module>
+		<module>spring-web</module>
 	</modules>
 	<properties>
 		<jdbc_version>12.1.0</jdbc_version>

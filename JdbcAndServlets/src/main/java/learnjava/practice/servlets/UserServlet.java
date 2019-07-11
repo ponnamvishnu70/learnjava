@@ -74,7 +74,9 @@ public class UserServlet extends HttpServlet {
 		// Forwarding request to different servlet or html or jsp
 		// RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 		RequestDispatcher rd = req.getRequestDispatcher("modify");
+		//Server side redirection. the server which received request is responsible for sending back response
 		rd.forward(req, resp);
+		//sendRedirect() is  client-side redirect.
 	}
 
 }

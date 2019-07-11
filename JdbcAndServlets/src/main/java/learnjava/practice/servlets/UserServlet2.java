@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/*
+ * RequestDispatcher can be obtained from 
+ * ServletContext.getRequestDispatcher() method or ServletRequest.getRequestDispatcher()
+ *  but the difference is the pathname of Servlet must begin with a / and is interpreted as
+ *   relative to the current context root, while in case of ServletRequest, path can be relative
+ */
 public class UserServlet2 extends HttpServlet {
 	//UserServlet2 called ModifyUserServlet by invoking requestdispatcher.include
 	//UserServlet2 will respond back to browser by including response of ModifyUserServlet

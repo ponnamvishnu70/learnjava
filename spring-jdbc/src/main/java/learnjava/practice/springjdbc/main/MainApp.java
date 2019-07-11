@@ -9,6 +9,7 @@ import learnjava.practice.springjdbc.config.Configurations;
 import learnjava.practice.springjdbc.dao.HistEodDataDao;
 
 public class MainApp {
+	private int i;
 
 	
 	public static void main(String[] args) {
