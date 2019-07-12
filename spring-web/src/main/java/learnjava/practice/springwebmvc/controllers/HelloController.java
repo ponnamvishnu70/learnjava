@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,13 +17,17 @@ import learnjava.practice.springweb.exceptionhandlers.CustomException;
 
 @Controller
 public class HelloController {
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	
 	@RequestMapping("/hello/{name}")
 	public String greet(Map<String, Object> model,@PathVariable("name") String name) {
 		System.out.println(name);
 		model.put("msg", "Hellooooo.............."+name);
 		System.out.println("inside controller");
-	return "hello";	
+		Integer count = jdbcTemplate.queryForObject("select count(*) from hist_eod_data", Integer.class); 
+		model.put("count", "count from hist_eod_data is "+ count);
+		return "hello";	
 	}
 	
 	//@modelattribute to get form objecct from front end

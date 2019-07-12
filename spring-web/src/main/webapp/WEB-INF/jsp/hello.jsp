@@ -6,6 +6,7 @@
 </head>
 <body>
 ${msg}
+${count}
 
 	<form action="/spring-web/hello1">
 		Enter First Name: <input type="text" name="fname"><br>

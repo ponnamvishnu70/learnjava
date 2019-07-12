@@ -34,7 +34,14 @@
 	</listener>
 	<context-param>
 	    <param-name>contextConfigLocation</param-name>
-	    <param-value>/WEB-INF/rootApplicationContext.xml</param-value>
+	    <!--  <param-value>/WEB-INF/rootApplicationContext.xml</param-value>-->
+	    <param-value>learnjava.practice.springweb.config.RootConfig</param-value>
 	</context-param>
-
+<!-- below context-param must be there if you are using java based configuration  -->
+	<context-param>
+	    <param-name>contextClass</param-name>
+	    <param-value>
+	        org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+	    </param-value>
+	</context-param>
 </web-app>
