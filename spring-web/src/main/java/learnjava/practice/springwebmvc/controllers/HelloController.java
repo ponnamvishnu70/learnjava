@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import learnjava.practice.springweb.exceptionhandlers.CustomException;
+import learnjava.practice.springweb.form.FileUploadForm;
 
 @Controller
 public class HelloController {
@@ -54,6 +57,11 @@ public class HelloController {
 		return "hello";	
 	}
 	
+	@RequestMapping("/hello5")
+	public String fileUpload(@ModelAttribute("fileUploadForm") FileUploadForm fileUploadForm) {		
+		System.out.println(fileUploadForm.getFile().getOriginalFilename());
+		return "hello";
+	}
 
 	
 

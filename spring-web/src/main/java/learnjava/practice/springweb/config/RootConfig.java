@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 @ComponentScan(basePackages = { "learnjava.practice" })
@@ -41,6 +42,14 @@ public class RootConfig {
 		System.out.println("creating JdbcTemplate bean");
 		return new JdbcTemplate(dataSource());
 	}
-
+	
+	//Thus requires commons-fileupload jar ...refer pom.xml
+	@Bean(name="multipartResolver")
+	public CommonsMultipartResolver commonsMultipartResolver() {
+	     CommonsMultipartResolver cmr = new CommonsMultipartResolver();
+	        cmr.setMaxUploadSize( 5 * 1024 * 1024 * 2);
+	        cmr.setMaxUploadSizePerFile( 5 * 1024 * 1024); //bytes
+	        return cmr;
+	}
 
 }

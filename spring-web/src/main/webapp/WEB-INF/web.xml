@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5"
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-						http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+						http://java.sun.com/xml/ns/javaee/web-app.xsd">
 
 
 	<display-name>Spring WEB MVC Application</display-name>
@@ -44,4 +44,5 @@
 	        org.springframework.web.context.support.AnnotationConfigWebApplicationContext
 	    </param-value>
 	</context-param>
+
 </web-app>
