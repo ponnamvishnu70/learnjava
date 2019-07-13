@@ -19,7 +19,7 @@ ${count}
 	</br>
 	</br>
 	</br>
-	
+<!-- modelAttribute should be used to convert below form to  FileUploadForm.java object and multipart/form-data for allowing images or vedios or  files-->
 <form:form method="POST" modelAttribute="fileUploadForm" action="/spring-web/hello5" enctype="multipart/form-data">
     <input type="file" name="file" /><br/><br/>
     <input type="submit" value="Submit" />

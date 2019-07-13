@@ -1,5 +1,8 @@
 package learnjava.practice.springwebmvc.controllers;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,6 +63,16 @@ public class HelloController {
 	@RequestMapping("/hello5")
 	public String fileUpload(@ModelAttribute("fileUploadForm") FileUploadForm fileUploadForm) {		
 		System.out.println(fileUploadForm.getFile().getOriginalFilename());
+		try (FileOutputStream fo = new FileOutputStream("C:\\Resources\\inbound\\"+fileUploadForm.getFile().getOriginalFilename())){
+			fo.write(fileUploadForm.getFile().getBytes());
+			fo.flush();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "hello";
 	}
 

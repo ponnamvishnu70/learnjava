@@ -1,5 +1,7 @@
 package learnjava.practice.springweb.config;
 
+import java.io.IOException;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -8,6 +10,8 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
@@ -42,13 +46,21 @@ public class RootConfig {
 		System.out.println("creating JdbcTemplate bean");
 		return new JdbcTemplate(dataSource());
 	}
-	
+	//refer http://websystique.com/springmvc/spring-mvc-4-file-upload-example-using-multipartconfigelement/
 	//Thus requires commons-fileupload jar ...refer pom.xml
 	@Bean(name="multipartResolver")
 	public CommonsMultipartResolver commonsMultipartResolver() {
-	     CommonsMultipartResolver cmr = new CommonsMultipartResolver();
+	 //below configuration is location for saving temp file 
+		Resource res = new FileSystemResource("C:\\Resources\\temp");
+		CommonsMultipartResolver cmr = new CommonsMultipartResolver();
 	        cmr.setMaxUploadSize( 5 * 1024 * 1024 * 2);
 	        cmr.setMaxUploadSizePerFile( 5 * 1024 * 1024); //bytes
+	      try {
+			cmr.setUploadTempDir(res);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	        return cmr;
 	}
 
