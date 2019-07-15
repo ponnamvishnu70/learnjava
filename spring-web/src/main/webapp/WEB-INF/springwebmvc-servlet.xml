@@ -9,12 +9,30 @@
    http://www.springframework.org/schema/mvc 
    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean id="internalViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	
-	<context:component-scan base-package="learnjava.practice" />
-	
+	<bean id="contentNegotiatingViewResolver"
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver ">
+		<property name="viewResolvers">
+			<list>
+				<ref bean="pdfViewResolver" />
+				<ref bean="internalViewResolver" />
+				<ref bean="jsonViewResolver" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="pdfViewResolver"
+		class="learnjava.practice.springweb.view.PdfViewResolver" />
+
+	<bean id="jsonViewResolver"	class="learnjava.practice.springweb.view.JsonViewResolver" />
+
+	<context:component-scan	base-package="learnjava.practice" />
+	<!-- Below tag is for static html pages -->
+	<mvc:resources location="/WEB-INF/jsp/"	mapping="/static/**"></mvc:resources>
+
 </beans>

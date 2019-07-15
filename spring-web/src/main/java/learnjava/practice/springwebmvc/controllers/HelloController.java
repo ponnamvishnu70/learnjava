@@ -1,15 +1,23 @@
 package learnjava.practice.springwebmvc.controllers;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import learnjava.practice.springweb.exceptionhandlers.CustomException;
 import learnjava.practice.springweb.form.FileUploadForm;
+import learnjava.practice.springweb.model.Person;
 
 @Controller
 public class HelloController {
@@ -77,5 +86,31 @@ public class HelloController {
 	}
 
 	
+	//This method will always return string that will be used by internalviewresolver
+	//if the url has a .json or .pdf extension spring will figure our which bean to invoke for view resolution based on set content type on class
+	//for example look at AbstractITextPdfView and MappingJackson2JsonView 
+	@RequestMapping("/hello6")
+	public String pdfDownload(Map<String, Object> model) {		
+		Person p=  new Person("vishnu", "Ponnam", 26);
+		model.put("person", p);
+		return "person";
+	}
+
+	//download a existing file
+	
+	@RequestMapping("/downloadpdf")
+	public void downloadpdf(Map<String, Object> model,HttpServletRequest req, HttpServletResponse res) throws IOException {		
+		File f = new File("C:\\Users\\AA0534\\Desktop\\SpringBatch.pdf");
+		FileInputStream fi = new FileInputStream(f);
+		BufferedInputStream bis = new BufferedInputStream(fi);
+		res.setContentType("application/pdf");
+		//if you want download the file directly set Content-Disposition attachment
+		//res.setHeader("Content-Disposition", String.format("inline; filename=SpringBatch.pdf"));
+		//if you want download the file directly set Content-Disposition attachment
+		res.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", f.getName()));
+        res.setContentLength((int)f.length());
+		FileCopyUtils.copy(bis, res.getOutputStream());	
+	
+	}
 
 }
