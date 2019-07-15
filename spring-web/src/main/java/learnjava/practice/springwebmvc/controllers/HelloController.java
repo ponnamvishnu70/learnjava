@@ -69,6 +69,20 @@ public class HelloController {
 		return "hello";	
 	}
 	
+	/*1. To use with Apache Commons . Spring CommonsMultipartResolver is a
+	 MultipartResolver implementation for use with Apache Commons FileUpload. It
+	 requires apache commons-fileupload.jar to be present on classpath. It’s not
+	 specific to Servlet 3 environment but it works equally well with Servlet 3.x
+	 containers.
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.3.1</version>
+	</dependency>
+	2. To use with Servlet 3.0 multipart request. Depends on which setup you are using[XML or JavaConfig].
+	For XML setup, you need to mark the DispatcherServlet with a "multipart-config" section in web.xml.
+	For Annoataion/JavaConfig setup, registering javax.servlet.MultipartConfigElement with DispatcherServlet. OR using @MultipartConfig on a custom servlet.
+	*/
 	@RequestMapping("/hello5")
 	public String fileUpload(@ModelAttribute("fileUploadForm") FileUploadForm fileUploadForm) {		
 		System.out.println(fileUploadForm.getFile().getOriginalFilename());
