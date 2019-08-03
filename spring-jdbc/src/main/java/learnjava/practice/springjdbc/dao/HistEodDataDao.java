@@ -196,10 +196,5 @@ public class HistEodDataDao {
 		
 		
 	}
-	
-	public void update() {
-		int update = jdbcTemplate.update("update hist_eod_data set close_price='100' where ticker='MDT'");
-		System.out.println(update);
-	}
 
 }

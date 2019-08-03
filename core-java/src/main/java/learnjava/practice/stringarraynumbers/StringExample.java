@@ -36,9 +36,5 @@ public class StringExample {
 		}
 		//Numbers to string
 		String inttostring = String.valueOf(10);
-		
-		
-		String smile ="SMILES";
-		System.out.println( smile.substring(0, 6));
 	}
 }
