@@ -13,7 +13,8 @@ ${count}
 	<form:form action="/spring-web/hello1">
 		Enter First Name: <input type="text" name="fname"><br>
 		Enter Last Name: <input type="text" name="lname"><br> 
-		Enter Last Name: <input type="text" name="name"><br> 
+		Enter age: <input type="text" name="age"><br> 
+		Enter age: <input type="text" name="dob"><br> 
 		<button type="submit">submit</button>
 		</form:form>
 	</br>

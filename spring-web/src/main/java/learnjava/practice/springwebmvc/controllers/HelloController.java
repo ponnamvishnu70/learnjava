@@ -6,28 +6,55 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import learnjava.practice.springweb.custompropertyeditor.LocalDateCustomPropertyEditor;
 import learnjava.practice.springweb.exceptionhandlers.CustomException;
 import learnjava.practice.springweb.form.FileUploadForm;
 import learnjava.practice.springweb.model.Person;
+import learnjava.practice.springweb.model.Student;
+import learnjava.practice.springwebmvc.validators.CustomValidator;
 
 @Controller
 public class HelloController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		if (binder.getTarget() instanceof Person) {
+			//this way we can have different kinds of validations			
+		}
+		System.out.println("inside webdatabinder1");
+		//binder.setDisallowedFields("lname");
+		//this is global place for validation .every request will be validate if the modelattribute is present 
+		//binder.setValidator(new CustomValidator());
+		binder.registerCustomEditor(LocalDate.class, "dob", new LocalDateCustomPropertyEditor());
+	}
+	
 	
 	@RequestMapping("/hello/{name}")
 	public String greet(Map<String, Object> model,@PathVariable("name") String name) {
@@ -45,11 +72,24 @@ public class HelloController {
 	//modelandview container of both view name and data
 	//all the method arguments will be passed by spring container
 	@RequestMapping("/hello1")
-	public String greet1(Map<String, Object> model,@RequestParam("name") String name, HttpServletRequest req) {
+	public String greet1(Map<String, Object> model,@Valid @ModelAttribute Person person,BindingResult result,@ModelAttribute Student student,BindingResult result1, HttpServletRequest req) {
+		//just an example. do not write code validating multiples models in same class. write separate class for each custom validator
+		CustomValidator cv = new CustomValidator();
+		cv.validate(person, result1);
+		if(result.hasErrors()) {
+		model.put("msg", "errors in form");
+		return "hello";
+	}
+	
+	cv.validate(student, result1);
+	if(result1.hasErrors()) {
+		model.put("msg", "errors in form");
+		return "hello";
+	}
 		System.out.println(req.getContextPath());
 		System.out.println(model);
-		System.out.println(name);		
-		model.put("msg", "Hellooooo1.............."+name);
+		System.out.println(person.getFname() +"  "+person.getLname());		
+		model.put("msg", "Hellooooo1.............."+person.getDob());
 		System.out.println("inside controller");
 	return "hello";	
 	}
@@ -105,7 +145,6 @@ public class HelloController {
 	}
 
 	//download a existing file
-	
 	@RequestMapping("/downloadpdf")
 	public void downloadpdf(Map<String, Object> model,HttpServletRequest req, HttpServletResponse res) throws IOException {		
 		File f = new File("C:\\Users\\AA0534\\Desktop\\SpringBatch.pdf");
@@ -121,4 +160,21 @@ public class HelloController {
 	
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/jsonTest", produces = "application/json; charset=UTF-8")
+	public List<Person> persons(){
+		Person p1 = new Person();
+		p1.setAge(28);
+		Person p2 = new Person();
+		p2.setAge(29);
+		Person p3 = new Person();
+		p3.setAge(27);
+		
+		List<Person> l = new ArrayList<Person>();
+		l.add(p1);
+		l.add(p2);
+		l.add(p3);
+		return l;
+	}
+	
 }

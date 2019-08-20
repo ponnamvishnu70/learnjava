@@ -29,10 +29,16 @@
 	<bean id="pdfViewResolver"
 		class="learnjava.practice.springweb.view.PdfViewResolver" />
 
-	<bean id="jsonViewResolver"	class="learnjava.practice.springweb.view.JsonViewResolver" />
+	<bean id="jsonViewResolver"
+		class="learnjava.practice.springweb.view.JsonViewResolver" />
 
-	<context:component-scan	base-package="learnjava.practice" />
+	<context:component-scan
+		base-package="learnjava.practice" />
 	<!-- Below tag is for static html pages -->
-	<mvc:resources location="/WEB-INF/jsp/"	mapping="/static/**"></mvc:resources>
-
+	<mvc:resources location="/WEB-INF/jsp/"
+		mapping="/static/**"></mvc:resources>
+	<mvc:interceptors>
+		<bean
+			class="learnjava.practice.springweb.interceptors.MyInterceptor" />
+	</mvc:interceptors>
 </beans>

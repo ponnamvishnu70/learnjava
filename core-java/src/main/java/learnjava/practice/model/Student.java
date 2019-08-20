@@ -1,6 +1,7 @@
 package learnjava.practice.model;
 
 public class Student {
+	
 	private String name;
 	private int rank;
 	private int grade;

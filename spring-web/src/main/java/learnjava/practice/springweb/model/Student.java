@@ -2,22 +2,19 @@ package learnjava.practice.springweb.model;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Min;
 
-public class Person {
-	@NotNull
-	@Size(min=2 , max =10)
+public class Student {
+	
 	private String lname;
-	//@JsonInclude(Include.NON_NULL)
-	//@JsonProperty("first_name")	
+	@Min(value=8)
 	private String fname;
 	private int age;
 //	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
-	public Person() {}
+	public Student() {}
 	
-	public Person(String lname, String fname, int age) {
+	public Student(String lname, String fname, int age) {
 		super();
 		this.lname = lname;
 		this.fname = fname;
