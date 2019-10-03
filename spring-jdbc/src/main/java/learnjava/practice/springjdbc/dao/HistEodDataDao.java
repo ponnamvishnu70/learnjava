@@ -23,6 +23,8 @@ import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import learnjava.practice.springjdbc.mapper.HistEodDataMapper;
 import learnjava.practice.springjdbc.model.EodData;
@@ -132,7 +134,7 @@ public class HistEodDataDao {
 
 	}
 	
-	
+	@Transactional
 	@SuppressWarnings("unchecked")
 	public void insertHistEodData2(List<EodData> eodData) {
 		String sql = "insert into hist_eod_data (TICKER,VOLUME,OPEN_PRICE,CLOSE_PRICE,HIGH_PRICE,LOW_PRICE,ADJ_CLOSE_PRICE,TIME_STAMP) "
@@ -144,7 +146,7 @@ public class HistEodDataDao {
 			System.out.println(eodData.get(i).getTicker());
 			@SuppressWarnings("rawtypes")
 			Map m =new HashMap();
-			m.put("ticker", eodData.get(i).getTicker());
+			m.put("ticker", "PM");
 			m.put("volume",  eodData.get(i).getVolume());
 			m.put("lowprice",  eodData.get(i).getLowPrice());
 			m.put("closeprice",  eodData.get(i).getLowPrice());
@@ -156,9 +158,14 @@ public class HistEodDataDao {
 		}
 
 	namedParameterJdbcTemplate.batchUpdate(sql, params);
-
+	updateHistEodData();
+	
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public void updateHistEodData(){
+		jdbcTemplate.update("update HIST_EOD_DATA set TICKER=null where volume='123456'");		
+	}
+	
 	public List<EodData> getHistEodData2(String ticker) {
 		String sql = "Select * from HIST_EOD_DATA where ticker=:ticker";
 		MapSqlParameterSource s= new MapSqlParameterSource();

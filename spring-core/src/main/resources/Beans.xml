@@ -12,7 +12,7 @@
 		<!-- setter based DI -->
 		<!-- object is created and property are set using set methods..we wont 
 			circular dependency issue -->
-		<!-- init-method="init" destroy-method="destroy" or use postconstructand predestroy can be used -->
+		<!-- init-method="init" destroy-method="destroy" or use postconstructand predestroy annotation can be used -->
 		<bean id="studentObjByProperties"
 			class="learnjava.practice.springcore.model.Student">
 			<property name="name" value="vishnu" />

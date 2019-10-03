@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import learnjava.practice.springjdbc.model.EodData;
 
@@ -23,6 +25,7 @@ import learnjava.practice.springjdbc.model.EodData;
 //componentscan  will scan for all the package mentioned for creating spring beans annotated with
 //@component,@service,@repository...... 
 @ComponentScan(basePackages = { "learnjava.practice.springjdbc" })
+@EnableTransactionManagement
 public class Configurations {
 
 	@Value("${DRIVER_CLASS_NAME}")
@@ -50,6 +53,11 @@ public class Configurations {
 	@Bean
 	public JdbcTemplate jdbcTemplate() {
 		return new JdbcTemplate(dataSource());
+	}
+	
+	@Bean
+	public DataSourceTransactionManager dataSourceTransactionManager() {
+		return new DataSourceTransactionManager(dataSource());
 	}
 
 }

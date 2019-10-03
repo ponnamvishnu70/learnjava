@@ -19,7 +19,8 @@
     <module>spring-security</module>
     <module>spring-web-security</module>
     <module>spring-websec</module>
-  </modules>
+    <module>spring-data-jpa</module>
+	</modules>
 	<properties>
 		<jdbc_version>12.1.0</jdbc_version>
 		<junit_version>3.8.1</junit_version>
