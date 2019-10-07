@@ -22,10 +22,11 @@
     <module>spring-data-jpa</module>
     <module>spring-boot</module>
     <module>spring-test</module>
+    <module>spring-web-test</module>
 	</modules>
 	<properties>
 		<jdbc_version>12.1.0</jdbc_version>
-		<junit_version>3.8.1</junit_version>
+		<junit_version>4.12</junit_version>
 	</properties>
 	  <parent>
 		<groupId>org.springframework.boot</groupId>
