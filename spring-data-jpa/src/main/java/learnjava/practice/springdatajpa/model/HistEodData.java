@@ -6,10 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Table;
 
-@Entity(name="HIST_EOD_DATA")
 @IdClass(value = HistEodDataId.class)
-
+@Entity(name="HIST_EOD_DATA")
 public class HistEodData {
 	@Id
 	@Column(name="TICKER")

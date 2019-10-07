@@ -12,6 +12,8 @@ public class HistEodDataId implements Serializable{
 	
 	@Column(name="TIME_STAMP")
 	private LocalDate date;
+	
+	public HistEodDataId() {}
 
 	public HistEodDataId(String ticker, LocalDate date) {
 		this.ticker=ticker;
