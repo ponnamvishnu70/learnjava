@@ -14,7 +14,7 @@ public class ListMockTest {
 	@Test
 	public void list_sizetest() {
 		List<String> mock = mock(List.class);
-		System.out.println(mock.get(0));
+		
 		when(mock.size()).thenReturn(444);
 		assertEquals(444, mock.size());
 		when(mock.get(0)).thenReturn("vishnu");
@@ -31,7 +31,7 @@ public class ListMockTest {
 		//----------------------------------------------------------------
 		System.out.println("---------");
 		List<String> spy = spy(ArrayList.class);
-		System.out.println("----->" + spy.get(0));
+		//System.out.println("----->" + spy.get(0));
 	}
 
 }
