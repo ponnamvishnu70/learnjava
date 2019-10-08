@@ -1,4 +1,4 @@
-package learnjava.practice.test.controller;
+package learnjava.practice;
 
 import org.json.JSONException;
 import org.junit.Test;
@@ -16,8 +16,8 @@ public class JsonAssertTest {
 	
 	@Test
 	public void jsonAssert_false() throws JSONException {
-		String expResp="{id: 1, name: phone,price: 251,quantity: 5}";
-		//strict = false will only allow spaces and missing elements and pinpoints the error
+		String expResp="{id: 1, name: phone,price: 250,quantity: 5}";
+		//strict = false will allow spaces and missing elements and pinpoints the error
 		JSONAssert.assertEquals(expResp, actualResp, false);
 	}
 
