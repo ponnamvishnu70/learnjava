@@ -14,5 +14,7 @@ public interface UserService {
 	User saveUser(User user);
 	List<User> getAllUsers();
 
+	public void update(User user);
+
 	
 }

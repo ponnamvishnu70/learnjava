@@ -1,35 +1,53 @@
 package learnjava.practice.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.springframework.hateoas.ResourceSupport;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
-public class User implements Serializable {
+@JsonInclude(value = Include.NON_EMPTY)
+public class User extends ResourceSupport  implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private int pid;
 	private String name;
 	private int rank;
+	@Transient
+	private List<String> str;
 	
+	public List<String> getStr() {
+		return str;
+	}
+
+	public void setStr(List<String> str) {
+		this.str = str;
+	}
+
 	public User() {}
 	
 	public User(int id, String name, int rank) {
 		super();
-		this.id = id;
+		this.pid = id;
 		this.name = name;
 		this.setRank(rank);
 	}
 	
 	
-	public int getId() {
-		return id;
+	public int getPid() {
+		return pid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int pid) {
+		this.pid = pid;
 	}
 	public String getName() {
 		return name;
