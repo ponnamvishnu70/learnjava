@@ -23,6 +23,7 @@
     <module>spring-boot</module>
     <module>spring-test</module>
     <module>spring-web-test</module>
+    <module>spring-rest</module>
 	</modules>
 	<properties>
 		<jdbc_version>12.1.0</jdbc_version>
