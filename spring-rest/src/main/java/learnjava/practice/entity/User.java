@@ -46,7 +46,7 @@ public class User extends ResourceSupport  implements Serializable {
 	public int getPid() {
 		return pid;
 	}
-	public void setId(int pid) {
+	public void setPid(int pid) {
 		this.pid = pid;
 	}
 	public String getName() {

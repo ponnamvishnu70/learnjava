@@ -1,6 +1,7 @@
 package learnjava.practice.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,11 @@ public interface UserService {
 	User saveUser(User user);
 	List<User> getAllUsers();
 
-	public void update(User user);
+	public void replace(User user);
+
+	public Optional<User> modify(User user);
+
+	public void delete(int id);
 
 	
 }

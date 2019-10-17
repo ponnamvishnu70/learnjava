@@ -2,6 +2,7 @@ package learnjava.practice.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,8 +38,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void update(User user) {
-	//	userRepository.	
+	public void replace(User user) {		
+		userRepository.save(user);
+	}
+
+	@Override
+	public Optional<User> modify(User user) {
+	return	userRepository.findById(user.getPid()).map( x -> {
+			x.setName(user.getName());
+			return userRepository.save(x);
+
+		});
+
+	}
+
+	@Override
+	public void delete(int id) {
+		userRepository.deleteById(id);
 	}
 
 }
