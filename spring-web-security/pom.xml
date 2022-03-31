@@ -14,7 +14,7 @@
   <name>spring-web-security Maven Webapp</name>
   <url>http://maven.apache.org</url>
  <properties>
-        <springframework.version>4.3.24.RELEASE</springframework.version>
+        <springframework.version>5.3.18</springframework.version>
     </properties>
  
     <dependencies>
